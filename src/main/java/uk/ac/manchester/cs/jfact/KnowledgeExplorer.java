@@ -25,6 +25,7 @@ import uk.ac.manchester.cs.jfact.kernel.Role;
 import uk.ac.manchester.cs.jfact.kernel.TBox;
 import uk.ac.manchester.cs.jfact.kernel.TDag2Interface;
 import uk.ac.manchester.cs.jfact.kernel.dl.ConceptName;
+import uk.ac.manchester.cs.jfact.kernel.dl.ConceptOneOf;
 import uk.ac.manchester.cs.jfact.kernel.dl.IndividualName;
 import uk.ac.manchester.cs.jfact.kernel.dl.interfaces.ConceptExpression;
 import uk.ac.manchester.cs.jfact.kernel.dl.interfaces.DataExpression;
@@ -124,13 +125,21 @@ public class KnowledgeExplorer implements Serializable {
     private void addC(Expression e) {
         // check named concepts
         if (e instanceof ConceptName) {
-            cs.get((ConceptName) e).stream().filter(p -> p.getId() != 0)
-                .forEach(p -> concepts.add(d2i.getCExpr(p.getId())));
+            cs.get((ConceptName) e).stream().filter(p -> p.getpName() != 0)
+                    .forEach(p -> concepts.add(d2i.getCExpr(p.getpName())));
             return;
         }
         // check named individuals
         if (e instanceof IndividualName) {
-            is.get((IndividualName) e).forEach(p -> concepts.add(d2i.getCExpr(p.getId())));
+            is.get((IndividualName) e).forEach(p -> concepts.add(d2i.getCExpr(p.getpName())));
+            return;
+        }
+        if (e instanceof ConceptOneOf) {
+            List<IndividualName> list = ((ConceptOneOf) e).getArguments();
+            for (IndividualName i : list) {
+                is.get(i).stream()
+                        .forEach(p -> concepts.add(d2i.getCExpr(p.getpName())));
+            }
             return;
         }
         concepts.add(e);
