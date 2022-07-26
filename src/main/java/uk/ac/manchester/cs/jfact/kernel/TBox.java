@@ -438,7 +438,9 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "concept2dag")
     public int concept2dag(@Nullable Concept p) {
+        System.out.println("concept2dag");
         if (p == null) {
+            System.out.println("p = null");
             return BP_INVALID;
         }
         if (!isValid(p.getpName())) {
@@ -533,6 +535,7 @@ public class TBox implements Serializable {
     public void setConceptIndex(Concept c) {
         c.setIndex(nC);
         conceptMap.add(c);
+        System.out.println("conceptMap -> conceptIndex: " + nC);
         ++nC;
     }
 
@@ -1121,6 +1124,7 @@ public class TBox implements Serializable {
     /** build dag */
     @PortedFrom(file = "dlTBox.h", name = "buildDAG")
     public void buildDAG() {
+        System.out.println("buildDAG()");
         nNominalReferences = 0;
         // init concept indexing
         // start with 1 to make index 0 an indicator of "not processed"
@@ -1285,6 +1289,9 @@ public class TBox implements Serializable {
         if (!pConcept.isSynonym() && pConcept.getIndex() == 0) {
             setConceptIndex(pConcept);
         }
+        System.out.println("pConcept: " + pConcept);
+        System.out.println("pName: " + pConcept.getpName());
+        System.out.println("pBody: " + pConcept.getpBody());
     }
 
     protected DagTag selectTag(Concept pConcept) {
