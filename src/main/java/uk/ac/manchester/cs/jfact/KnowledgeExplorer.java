@@ -205,9 +205,9 @@ public class KnowledgeExplorer implements Serializable {
     @PortedFrom(file = "KnowledgeExplorer.h", name = "getLabel")
     public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet) {
         // prepare D2I translator
-        System.out.println("getObjectLabel");
+        System.out.println("getObjectLabel()");
         d2i.ensureDagSize();
-        System.out.println("test");
+//        System.out.println("test");
         assert !node.isDataNode();
         concepts.clear();
         Stream.concat(node.simpleConcepts().stream(), node.complexConcepts().stream())
