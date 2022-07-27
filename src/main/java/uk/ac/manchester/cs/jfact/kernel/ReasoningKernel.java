@@ -44,11 +44,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLEntity;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLRuntimeException;
+import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.InconsistentOntologyException;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.ReasonerInternalException;
@@ -1731,7 +1727,9 @@ public class ReasoningKernel implements Serializable {
         System.out.println("ONT SIGNATURE:");
         System.out.println(ontology.getSignature());
         System.out.println("ONT AXIOMS:");
-        ontology.getAxioms().stream().forEach(p -> System.out.print(p.getAxiom()));
+        ontology.getAxioms().stream().filter(p -> !p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
+        ontology.getAxioms().stream().filter(p -> p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
+
         // (re)load ontology
         OntologyLoader ontologyLoader = new OntologyLoader(getTBox());
         ontologyLoader.visitOntology(ontology);
