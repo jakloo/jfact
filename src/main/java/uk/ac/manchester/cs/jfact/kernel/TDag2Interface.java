@@ -175,6 +175,9 @@ public class TDag2Interface implements Serializable {
      */
     @PortedFrom(file = "tDag2Interface.h", name = "ensureDagSize")
     public void ensureDagSize() {
+        System.out.println("test0");
+        System.out.println(dag.size());
+        System.out.println(dag);
         int ds = dag.size();
         int ts = transConcept.size();
         if (ds == ts) {

@@ -1,7 +1,6 @@
 package uk.ac.manchester.cs.jfact;
 
-import static org.semanticweb.owlapi.util.OWLAPIStreamUtils.asList;
-import static org.semanticweb.owlapi.util.OWLAPIStreamUtils.asSet;
+import static org.semanticweb.owlapi.util.OWLAPIStreamUtils.*;
 import static uk.ac.manchester.cs.jfact.helpers.Assertions.verifyNotNull;
 
 import java.io.Serializable;
@@ -208,6 +207,7 @@ public class KnowledgeExplorer implements Serializable {
         // prepare D2I translator
         System.out.println("getObjectLabel");
         d2i.ensureDagSize();
+        System.out.println("test");
         assert !node.isDataNode();
         concepts.clear();
         Stream.concat(node.simpleConcepts().stream(), node.complexConcepts().stream())
