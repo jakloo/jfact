@@ -1596,11 +1596,12 @@ public class ReasoningKernel implements Serializable {
      */
     @PortedFrom(file = "Kernel.h", name = "needForceReload")
     private boolean needForceReload() {
+        System.out.println("needForceReload()");
         if (pTBox == null) {
             return true;
         }
         if (!ontology.isChanged()) {
-            System.out.println("NeedForceReload: ontology is not changed");
+            System.out.println("ontology is not changed");
             return false;
         }
         // no incremental required -- nothing to do
@@ -1723,11 +1724,11 @@ public class ReasoningKernel implements Serializable {
     /** force the re-classification of the changed ontology */
     @PortedFrom(file = "Kernel.h", name = "forceReload")
     private void forceReload() {
-        System.out.println("start forceReload()");
+        System.out.println("forceReload()");
         clearTBox();
         newKB();
         ontology.getSignature().forEach(p -> p.setEntry(null));
-        System.out.println("ONT SIGNATURE");
+        System.out.println("ONT SIGNATURE:");
         System.out.println(ontology.getSignature());
         // (re)load ontology
         OntologyLoader ontologyLoader = new OntologyLoader(getTBox());
