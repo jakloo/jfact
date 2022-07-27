@@ -1728,6 +1728,7 @@ public class ReasoningKernel implements Serializable {
         System.out.println(ontology.getSignature());
         System.out.println("ONT AXIOMS:");
         ontology.getAxioms().stream().filter(p -> !p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
+        System.out.println();
         ontology.getAxioms().stream().filter(p -> p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
 
         // (re)load ontology
