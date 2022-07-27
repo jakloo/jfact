@@ -438,8 +438,9 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "concept2dag")
     public int concept2dag(@Nullable Concept p) {
+        System.out.println("Concept p: " + p);
         if (p == null) {
-            System.out.println("p = null -> BP_INVALID");
+//            System.out.println("p = null -> BP_INVALID");
             return BP_INVALID;
         }
         if (!isValid(p.getpName())) {
@@ -1134,9 +1135,9 @@ public class TBox implements Serializable {
         conceptMap.add(null);
         // make fresh concept and datatype
         concept2dag(pTemp);
-        System.out.println("CONCEPTS");
+//        System.out.println("CONCEPTS");
         concepts.getConcepts().forEach(this::concept2dag);
-        System.out.println("INDIVIDUALS");
+//        System.out.println("INDIVIDUALS");
         individuals.getConcepts().forEach(this::concept2dag);
         simpleRules.forEach(q -> q.setBpHead(tree2dag(q.tHead)));
         // builds Roles range and domain
@@ -1177,6 +1178,7 @@ public class TBox implements Serializable {
         }
         // here DAG is complete; set its final size
         dlHeap.setFinalSize();
+        System.out.println(dlHeap.size());
     }
 
     /**
@@ -1294,8 +1296,8 @@ public class TBox implements Serializable {
         if (!pConcept.isSynonym() && pConcept.getIndex() == 0) {
             setConceptIndex(pConcept);
         }
-        System.out.println("pName: " + pConcept.getpName());
-        System.out.println("pBody: " + pConcept.getpBody());
+//        System.out.println("pName: " + pConcept.getpName());
+//        System.out.println("pBody: " + pConcept.getpBody());
     }
 
     protected DagTag selectTag(Concept pConcept) {
