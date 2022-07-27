@@ -1730,6 +1730,8 @@ public class ReasoningKernel implements Serializable {
         ontology.getSignature().forEach(p -> p.setEntry(null));
         System.out.println("ONT SIGNATURE:");
         System.out.println(ontology.getSignature());
+        System.out.println("ONT AXIOMS:");
+        System.out.println(ontology.getAxioms());
         // (re)load ontology
         OntologyLoader ontologyLoader = new OntologyLoader(getTBox());
         ontologyLoader.visitOntology(ontology);
