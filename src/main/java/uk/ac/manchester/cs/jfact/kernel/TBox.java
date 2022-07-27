@@ -438,14 +438,15 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "concept2dag")
     public int concept2dag(@Nullable Concept p) {
-//        System.out.println("concept2dag");
         if (p == null) {
-//            System.out.println("p = null");
+            System.out.println("p = null -> BP_INVALID");
             return BP_INVALID;
         }
         if (!isValid(p.getpName())) {
             addConceptToHeap(p);
         }
+        System.out.println("resolveId -> " + p.resolveId());
+        System.out.println();
         return p.resolveId();
     }
 
@@ -535,7 +536,7 @@ public class TBox implements Serializable {
     public void setConceptIndex(Concept c) {
         c.setIndex(nC);
         conceptMap.add(c);
-//        System.out.println("conceptMap -> conceptIndex: " + nC);
+        System.out.println("conceptIndex in conceptMap: " + nC);
         ++nC;
     }
 
@@ -1080,6 +1081,7 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "isConsistent")
     public boolean isConsistent() {
+        System.out.println("TBox isConsistent()");
         if (status.ordinal() < KBCHECKED.ordinal()) {
             prepareReasoning();
             if (status.ordinal() < KBCHECKED.ordinal() && consistent) {
@@ -1124,7 +1126,7 @@ public class TBox implements Serializable {
     /** build dag */
     @PortedFrom(file = "dlTBox.h", name = "buildDAG")
     public void buildDAG() {
-//        System.out.println("buildDAG()");
+        System.out.println("buildDAG()");
         nNominalReferences = 0;
         // init concept indexing
         // start with 1 to make index 0 an indicator of "not processed"
@@ -1132,7 +1134,9 @@ public class TBox implements Serializable {
         conceptMap.add(null);
         // make fresh concept and datatype
         concept2dag(pTemp);
+        System.out.println("CONCEPTS");
         concepts.getConcepts().forEach(this::concept2dag);
+        System.out.println("INDIVIDUALS");
         individuals.getConcepts().forEach(this::concept2dag);
         simpleRules.forEach(q -> q.setBpHead(tree2dag(q.tHead)));
         // builds Roles range and domain
@@ -1264,6 +1268,7 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "addConceptToHeap")
     public void addConceptToHeap(Concept pConcept) {
+        System.out.println("pConcept: " + pConcept);
         // choose proper tag by concept
         DagTag tag = selectTag(pConcept);
         // NSingleton is a nominal
@@ -1289,9 +1294,8 @@ public class TBox implements Serializable {
         if (!pConcept.isSynonym() && pConcept.getIndex() == 0) {
             setConceptIndex(pConcept);
         }
-//        System.out.println("pConcept: " + pConcept);
-//        System.out.println("pName: " + pConcept.getpName());
-//        System.out.println("pBody: " + pConcept.getpBody());
+        System.out.println("pName: " + pConcept.getpName());
+        System.out.println("pBody: " + pConcept.getpBody());
     }
 
     protected DagTag selectTag(Concept pConcept) {
@@ -1613,6 +1617,7 @@ public class TBox implements Serializable {
     /** prepare reasoning */
     @PortedFrom(file = "dlTBox.h", name = "prepareReasoning")
     public void prepareReasoning() {
+        System.out.println("prepareReasoning()");
         preprocess();
         initReasoner();
         // check if it is necessary to dump relevant part TBox
@@ -2556,6 +2561,7 @@ public class TBox implements Serializable {
     /** preprocess tbox */
     @PortedFrom(file = "dlTBox.h", name = "preprocess")
     public void preprocess() {
+        System.out.println("preprocess()");
         if (config.getverboseOutput()) {
             config.getLog().print("\nPreprocessing...\n");
         }

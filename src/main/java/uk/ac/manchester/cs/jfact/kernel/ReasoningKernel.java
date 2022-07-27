@@ -1592,12 +1592,12 @@ public class ReasoningKernel implements Serializable {
      */
     @PortedFrom(file = "Kernel.h", name = "needForceReload")
     private boolean needForceReload() {
-        System.out.println("needForceReload()");
+//        System.out.println("needForceReload()");
         if (pTBox == null) {
             return true;
         }
         if (!ontology.isChanged()) {
-            System.out.println("ontology is not changed");
+//            System.out.println("ontology is not changed");
             return false;
         }
         // no incremental required -- nothing to do
@@ -1720,7 +1720,7 @@ public class ReasoningKernel implements Serializable {
     /** force the re-classification of the changed ontology */
     @PortedFrom(file = "Kernel.h", name = "forceReload")
     private void forceReload() {
-        System.out.println("forceReload()");
+//        System.out.println("forceReload()");
         clearTBox();
         newKB();
         ontology.getSignature().forEach(p -> p.setEntry(null));
@@ -1733,11 +1733,11 @@ public class ReasoningKernel implements Serializable {
         // after loading ontology became processed completely
         ontology.setProcessed();
 
-        System.out.println("ONT AXIOMS:");
-        ontology.getAxioms().stream().filter(p -> p.getAxiom()
-                .isOfType(AxiomType.CLASS_ASSERTION, AxiomType.OBJECT_PROPERTY_ASSERTION, AxiomType.DATA_PROPERTY_ASSERTION, AxiomType.NEGATIVE_DATA_PROPERTY_ASSERTION, AxiomType.NEGATIVE_OBJECT_PROPERTY_ASSERTION, AxiomType.ANNOTATION_ASSERTION) && p.isUsed())
-                .forEach(p -> System.out.print(p.getAxiom()));
-        System.out.println();
+//        System.out.println("ONT AXIOMS:");
+//        ontology.getAxioms().stream().filter(p -> p.getAxiom()
+//                .isOfType(AxiomType.CLASS_ASSERTION, AxiomType.OBJECT_PROPERTY_ASSERTION, AxiomType.DATA_PROPERTY_ASSERTION, AxiomType.NEGATIVE_DATA_PROPERTY_ASSERTION, AxiomType.NEGATIVE_OBJECT_PROPERTY_ASSERTION, AxiomType.ANNOTATION_ASSERTION) && p.isUsed())
+//                .forEach(p -> System.out.print(p.getAxiom()));
+//        System.out.println();
 //        ontology.getAxioms().stream().filter(p -> p.getAxiom().isOfType(AxiomType.DECLARATION) && p.isUsed()).forEach(p -> System.out.print(p.getAxiom()));
 
     }
