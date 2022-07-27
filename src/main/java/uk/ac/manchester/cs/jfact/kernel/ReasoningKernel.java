@@ -1724,13 +1724,6 @@ public class ReasoningKernel implements Serializable {
         clearTBox();
         newKB();
         ontology.getSignature().forEach(p -> p.setEntry(null));
-        System.out.println("ONT SIGNATURE:");
-        System.out.println(ontology.getSignature());
-        System.out.println("ONT AXIOMS:");
-        ontology.getAxioms().stream().filter(p -> !p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
-        System.out.println();
-        ontology.getAxioms().stream().filter(p -> p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
-
         // (re)load ontology
         OntologyLoader ontologyLoader = new OntologyLoader(getTBox());
         ontologyLoader.visitOntology(ontology);
@@ -1739,6 +1732,12 @@ public class ReasoningKernel implements Serializable {
         }
         // after loading ontology became processed completely
         ontology.setProcessed();
+
+        System.out.println("ONT AXIOMS:");
+        ontology.getAxioms().stream().filter(p -> !p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
+        System.out.println();
+        ontology.getAxioms().stream().filter(p -> p.getAxiom().isOfType(AxiomType.DECLARATION)).forEach(p -> System.out.print(p.getAxiom()));
+
     }
 
     /**
