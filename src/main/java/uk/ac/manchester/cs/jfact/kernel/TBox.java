@@ -1181,7 +1181,12 @@ public class TBox implements Serializable {
         // here DAG is complete; set its final size
         dlHeap.setFinalSize();
         System.out.println("dl heap complete");
-        System.out.println("heap: " + dlHeap.heap);
+        for (DLVertex v : dlHeap.heap) {
+            if (v.getType() == DagTag.BAD) continue;
+            System.out.println("Vertex " + v);
+            System.out.println("concept " + v.getConcept());
+            System.out.println("index " + v.getConceptIndex());
+        }
         System.out.println("cache: " + dlHeap.cache);
         System.out.println(dlHeap.size());
     }
