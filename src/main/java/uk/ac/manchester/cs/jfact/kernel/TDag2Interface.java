@@ -179,10 +179,11 @@ public class TDag2Interface implements Serializable {
         System.out.println("ensure dag size");
         System.out.println(dag.size());
         System.out.println(dag);
-        System.out.println("dag heap: " + dag.heap);
         System.out.println("dag cache: " + dag.cache);
+        System.out.println("dag heap: ");
         for (DLVertex v : dag.heap) {
-//            System.out.println("Vertex " + v);
+            if (v.getType() == DagTag.BAD) continue;
+            System.out.println("Vertex " + v);
             System.out.println("concept " + v.getConcept());
             System.out.println("index " + v.getConceptIndex());
         }
