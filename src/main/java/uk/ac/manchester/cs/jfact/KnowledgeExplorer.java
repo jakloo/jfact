@@ -60,13 +60,14 @@ public class KnowledgeExplorer implements Serializable {
     @PortedFrom(file = "KnowledgeExplorer.h", name = "Concepts")
     private final List<Expression> concepts = new ArrayList<>();
 
+    private final TBox tbox;
+
     /**
      * @param box box
      * @param pEM pEM
      */
     public KnowledgeExplorer(TBox box, ExpressionCache pEM) {
-        System.out.println("nodes: " + box.getReasoner().cGraph.nodes().collect(Collectors.toList()));
-
+        tbox = box;
         d2i = new TDag2Interface(box.getDag(), pEM);
         // init all concepts
         box.getConcepts().forEach(c -> addConceptsAndIndividuals(cs, c));
@@ -209,6 +210,7 @@ public class KnowledgeExplorer implements Serializable {
     public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet) {
         // prepare D2I translator
         System.out.println("getObjectLabel()");
+        System.out.println("nodes: " + tbox.getReasoner().cGraph.nodes().collect(Collectors.toList()));
         d2i.ensureDagSize();
 //        System.out.println("test");
         assert !node.isDataNode();
