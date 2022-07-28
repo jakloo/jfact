@@ -182,7 +182,7 @@ public class TDag2Interface implements Serializable {
         System.out.println("dag heap: " + dag.heap);
         System.out.println("dag cache: " + dag.cache);
         for (DLVertex v : dag.heap) {
-            System.out.println("Vertex " + v);
+//            System.out.println("Vertex " + v);
             System.out.println("concept " + v.getConcept());
             System.out.println("index " + v.getConceptIndex());
         }
