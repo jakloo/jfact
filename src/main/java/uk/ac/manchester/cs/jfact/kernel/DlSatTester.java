@@ -427,7 +427,7 @@ public class DlSatTester implements Serializable {
     private final List<Role> reflexiveRoles = new ArrayList<>();
     /** Completion Graph of tested concept(s) */
     @PortedFrom(file = "Reasoner.h", name = "CGraph")
-    protected final DlCompletionGraph cGraph;
+    public final DlCompletionGraph cGraph;
     /** Todo list */
     @PortedFrom(file = "Reasoner.h", name = "TODO")
     private final ToDoList todo;

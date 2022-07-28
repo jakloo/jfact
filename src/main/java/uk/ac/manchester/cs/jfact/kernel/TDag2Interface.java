@@ -175,13 +175,19 @@ public class TDag2Interface implements Serializable {
      */
     @PortedFrom(file = "tDag2Interface.h", name = "ensureDagSize")
     public void ensureDagSize() {
-//        System.out.println("test0");
+
+        System.out.println("ensure dag size");
         System.out.println(dag.size());
         System.out.println(dag);
-        for (int i = 0; i < dag.size(); i++) {
-            System.out.println(dag.get(i));
-            System.out.println(dag.get(i).getConcept());
+        System.out.println("dag heap: " + dag.heap);
+        System.out.println("dag cache: " + dag.cache);
+        for (DLVertex v : dag.heap) {
+            System.out.println("Vertex " + v);
+            System.out.println("concept " + v.getConcept());
+            System.out.println("index " + v.getConceptIndex());
         }
+        System.out.println();
+
         int ds = dag.size();
         int ts = transConcept.size();
         if (ds == ts) {

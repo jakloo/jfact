@@ -1161,6 +1161,8 @@ public class TBox implements Serializable {
             list.add(gci);
             gci = DLTreeFactory.createSNFAnd(list);
         }
+        System.out.println("DLTree list");
+        System.out.println(list);
         internalisedGeneralAxiom = tree2dag(gci);
         // mark GCI flags
         gcis.setGCI(internalisedGeneralAxiom != BP_TOP);
@@ -1178,6 +1180,9 @@ public class TBox implements Serializable {
         }
         // here DAG is complete; set its final size
         dlHeap.setFinalSize();
+        System.out.println("dl heap complete");
+        System.out.println("heap: " + dlHeap.heap);
+        System.out.println("cache: " + dlHeap.cache);
         System.out.println(dlHeap.size());
     }
 
@@ -1683,6 +1688,7 @@ public class TBox implements Serializable {
      */
     @PortedFrom(file = "dlTBox.h", name = "performConsistencyCheck")
     public boolean performConsistencyCheck() {
+        System.out.println("perform consistency check");
         if (config.getverboseOutput()) {
             config.getLog().print("Consistency checking...\n");
         }

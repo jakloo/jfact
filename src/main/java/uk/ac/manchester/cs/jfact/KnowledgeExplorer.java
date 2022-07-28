@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.LinkedHashMultimap;
@@ -64,6 +65,8 @@ public class KnowledgeExplorer implements Serializable {
      * @param pEM pEM
      */
     public KnowledgeExplorer(TBox box, ExpressionCache pEM) {
+        System.out.println("nodes: " + box.getReasoner().cGraph.nodes().collect(Collectors.toList()));
+
         d2i = new TDag2Interface(box.getDag(), pEM);
         // init all concepts
         box.getConcepts().forEach(c -> addConceptsAndIndividuals(cs, c));
