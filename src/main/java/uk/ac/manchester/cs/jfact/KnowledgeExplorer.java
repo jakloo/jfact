@@ -199,7 +199,7 @@ public class KnowledgeExplorer implements Serializable {
     public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet, ReasoningKernel rk) {
         // prepare D2I translator
         System.out.println("getObjectLabel()");
-        System.out.println("nodes: " + rk.getTBox().getReasoner().cGraph.nodes().collect(Collectors.toList()));
+//        System.out.println("nodes: " + rk.getTBox().getReasoner().cGraph.nodes().collect(Collectors.toList()));
         d2i.ensureDagSize();
 //        System.out.println("test");
         assert !node.isDataNode();

@@ -1521,6 +1521,11 @@ public class DlSatTester implements Serializable {
         // we will change current Node => save it if necessary
         updateLevel(n, dep);
         cGraph.addConceptToNode(n, p, tag.isComplexConcept());
+        System.out.println("addConceptToNode");
+        System.out.println("Tree " + n);
+        System.out.println("ConceptWDep " + p);
+        System.out.println(p.getConcept());
+        System.out.println("tag " + tag.getName());
         used.add(bp);
         if (n.isCached()) {
             return correctCachedEntry(n);
