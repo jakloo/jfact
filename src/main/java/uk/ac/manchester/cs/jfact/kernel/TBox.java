@@ -1184,7 +1184,7 @@ public class TBox implements Serializable {
         for (DLVertex v : dlHeap.heap) {
             if (v.getType() == DagTag.BAD) continue;
             System.out.println("Vertex " + v);
-            System.out.println("concept " + v.getConcept());
+            if (v.hasConcept()) System.out.println("concept " + v.getConcept());
             System.out.println("index " + v.getConceptIndex());
         }
         System.out.println("cache: " + dlHeap.cache);
