@@ -1549,7 +1549,7 @@ public class ReasoningKernel implements Serializable {
      */
     @PortedFrom(file = "Kernel.h", name = "getLabel")
     public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet) {
-        return ke.getObjectLabel(node, onlyDet);
+        return ke.getObjectLabel(node, onlyDet, this);
     }
 
     /**

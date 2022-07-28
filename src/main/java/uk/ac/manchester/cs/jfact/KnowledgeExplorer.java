@@ -15,15 +15,7 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 
 import conformance.PortedFrom;
-import uk.ac.manchester.cs.jfact.kernel.ClassifiableEntry;
-import uk.ac.manchester.cs.jfact.kernel.Concept;
-import uk.ac.manchester.cs.jfact.kernel.DlCompletionTree;
-import uk.ac.manchester.cs.jfact.kernel.DlCompletionTreeArc;
-import uk.ac.manchester.cs.jfact.kernel.ExpressionCache;
-import uk.ac.manchester.cs.jfact.kernel.Individual;
-import uk.ac.manchester.cs.jfact.kernel.Role;
-import uk.ac.manchester.cs.jfact.kernel.TBox;
-import uk.ac.manchester.cs.jfact.kernel.TDag2Interface;
+import uk.ac.manchester.cs.jfact.kernel.*;
 import uk.ac.manchester.cs.jfact.kernel.dl.ConceptName;
 import uk.ac.manchester.cs.jfact.kernel.dl.ConceptOneOf;
 import uk.ac.manchester.cs.jfact.kernel.dl.IndividualName;
@@ -60,14 +52,11 @@ public class KnowledgeExplorer implements Serializable {
     @PortedFrom(file = "KnowledgeExplorer.h", name = "Concepts")
     private final List<Expression> concepts = new ArrayList<>();
 
-    private final TBox tbox;
-
     /**
      * @param box box
      * @param pEM pEM
      */
     public KnowledgeExplorer(TBox box, ExpressionCache pEM) {
-        tbox = box;
         d2i = new TDag2Interface(box.getDag(), pEM);
         // init all concepts
         box.getConcepts().forEach(c -> addConceptsAndIndividuals(cs, c));
@@ -207,10 +196,10 @@ public class KnowledgeExplorer implements Serializable {
      * @return all the data expressions from the NODE label
      */
     @PortedFrom(file = "KnowledgeExplorer.h", name = "getLabel")
-    public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet) {
+    public List<ConceptExpression> getObjectLabel(DlCompletionTree node, boolean onlyDet, ReasoningKernel rk) {
         // prepare D2I translator
         System.out.println("getObjectLabel()");
-        System.out.println("nodes: " + tbox.getReasoner().cGraph.nodes().collect(Collectors.toList()));
+        System.out.println("nodes: " + rk.getTBox().getReasoner().cGraph.nodes().collect(Collectors.toList()));
         d2i.ensureDagSize();
 //        System.out.println("test");
         assert !node.isDataNode();
