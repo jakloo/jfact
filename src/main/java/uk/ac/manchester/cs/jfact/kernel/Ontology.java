@@ -59,7 +59,7 @@ public class Ontology implements Serializable {
     /** @return true iff the ontology was changed since its last load */
     @PortedFrom(file = "tOntology.h", name = "isChanged")
     public boolean isChanged() {
-        return changed;
+        return true;
     }
 
     /** set the processed marker to the end of the ontology */
