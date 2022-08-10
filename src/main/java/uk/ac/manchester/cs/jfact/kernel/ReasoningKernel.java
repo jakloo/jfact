@@ -185,6 +185,10 @@ public class ReasoningKernel implements Serializable {
         initCacheAndFlags();
     }
 
+    public KnowledgeExplorer getKe() {
+        return ke;
+    }
+
     /**
      * @param b b
      */
