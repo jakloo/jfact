@@ -194,7 +194,7 @@ public class TDag2Interface implements Serializable {
             return not(getCExpr(-p));
         }
         if (transData.size() - 1 < p) {
-            System.out.println("problem: " + p);
+//            System.out.println("problem: " + p);
             return null;
         }
         if (transConcept.get(p) == null) {
