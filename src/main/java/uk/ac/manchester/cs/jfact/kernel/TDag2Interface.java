@@ -193,6 +193,10 @@ public class TDag2Interface implements Serializable {
         if (p < 0) {
             return not(getCExpr(-p));
         }
+        if (transData.size() - 1 < p) {
+//            System.out.println("problem: " + p);
+            return null;
+        }
         if (transConcept.get(p) == null) {
             transConcept.set(p, buildCExpr(dag.get(p)));
         }
