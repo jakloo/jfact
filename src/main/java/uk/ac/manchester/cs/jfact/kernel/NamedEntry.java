@@ -139,7 +139,8 @@ public abstract class NamedEntry implements HasIRI, Serializable {
     /** @return entity */
     @PortedFrom(file = "tNamedEntry.h", name = "getEntity")
     public NamedEntity getEntity() {
-        return verifyNotNull(entity);
+        return entity;
+        //return verifyNotNull(entity);
     }
 
     /** @return true if entity exists */

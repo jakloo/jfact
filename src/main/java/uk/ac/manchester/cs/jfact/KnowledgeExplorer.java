@@ -175,7 +175,7 @@ public class KnowledgeExplorer implements Serializable {
         return asSet(
             node.getNeighbour().stream().filter(p -> notBlockedNotData(onlyDet, needIncoming, p))
                 .map(DlCompletionTreeArc::getRole).filter(Objects::nonNull)
-                .flatMap(role -> ors.get(verifyNotNull(role).getEntity()).stream())
+                .flatMap(role -> ors.get(role.getEntity()).stream())
                 .map(r -> (ObjectRoleExpression) d2i.getObjectRoleExpression(r)));
     }
 
